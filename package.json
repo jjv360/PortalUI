@@ -1,0 +1,29 @@
+{
+  "name": "portalui",
+  "version": "1.0.0",
+  "description": "User Interface framework",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "npm run build",
+    "build": "webpack -p"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jjv360/PortalUI.git"
+  },
+  "keywords": [
+    "ui",
+    "user",
+    "interface",
+    "framework"
+  ],
+  "author": "jjv360",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jjv360/PortalUI/issues"
+  },
+  "homepage": "https://github.com/jjv360/PortalUI#readme",
+  "devDependencies": {
+    "webpack": "^4.6.0"
+  }
+}
