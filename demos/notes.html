@@ -2,13 +2,37 @@
 <html>
 <head>
     <title>Notes - PortalUI</title>
+    <style>
+        html, body { margin: 0px; padding: 0px }
+    </style>
 </head>
 <body>
 <script src='../dist/portalui.min.js'></script>
 <script>
 
-    // Create a window on the left
-    var leftWindow = new Window({ title: "Notes", x: 20, y: 20, width: 320, height: window.innerHeight - 40 })
+    // Separate namespace TODO: Can we automate this?
+    for (var n in PortalUI) window[n] = PortalUI[n]
+
+    // Create background
+    var bg = new Background()
+
+    // Create fullscreen window
+    var mainWindow = new Window({ title: "Main Window", mode: Window.Mode.Fullscreen })
+
+    // Create split view
+    var splitView = new SplitView()
+    splitView.addTo(mainWindow)
+
+    // Create flex layout for the main window
+    splitView.mainView.add(new NavigationBar({ title: "Select note" }))
+    splitView.mainView.add(new Label({ text: "Select a note below to begin", layoutMode: View.LayoutModes.Block }))
+
+    // Create add button
+    // var addBtn = new Button({ text: "Add note" })
+    // addBtn.addTo(splitView.mainView)
+
+	// Done
+	console.log("App running")
 
 </script>
 </body>

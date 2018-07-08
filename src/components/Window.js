@@ -4,11 +4,19 @@ import View from './View'
 /** A window that the user can interact with. */
 export default class Window extends View {
 
-    constructor(opts) {
-        super(opts)
+    constructor(options = {}) {
+        super(options)
 
-        // Set default window mode
-        this.mode = Window.Mode.FullForm
+        // Add view to the dom
+        document.body.appendChild(this._.element)
+
+        // Set default window mode, if not supplied by the user already
+        if (!options.mode)
+            this.mode = Window.Mode.FullForm
+
+        // Register resize listeners
+        this.onWindowResize = this.onWindowResize.bind(this)
+        window.addEventListener("resize", this.onWindowResize)
 
     }
 
@@ -27,12 +35,33 @@ export default class Window extends View {
         if (v == Window.Mode.FullForm) {
 
             // Fill the screen
-            this.element.style.x = "20px"
-            this.element.style.y = "20px"
-            this.element.style.width = "calc(100% - 40px)"
-            this.element.style.height = "calc(100% - 40px)"
+            this._.element.style.top = "20px"
+            this._.element.style.left = "20px"
+            this._.element.style.width = "calc(100% - 40px)"
+            this._.element.style.height = "calc(100% - 40px)"
+
+        } else if (v == Window.Mode.Fullscreen) {
+
+            // Fill the screen
+            this._.element.style.top = "0px"
+            this._.element.style.left = "0px"
+            this._.element.style.width = "100%"
+            this._.element.style.height = "100%"
+
+        } else {
+
+            // Unknown view mode
+            throw new Error("Unknown window mode supplied.")
 
         }
+
+    }
+
+    /** @private Called when the viewport itself is resized */
+    onWindowResize() {
+
+        // Notify view it's layout has changed
+        this.onLayout()
 
     }
 
@@ -42,6 +71,9 @@ export default class Window extends View {
 Window.Mode = {
 
     /** Displays the window fullscreen, with a little padding around the outside containing the background. */
-    FullForm: 1
+    FullForm: 1,
+
+    /** Displays the window fullscreen. */
+    Fullscreen: 2
 
 }

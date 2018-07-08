@@ -23,14 +23,14 @@ module.exports.output = {
 module.exports.devtool = "source-map";
 
 // Compile support for ES6 classes and React etc
-module.exports.module.rules.push({
-    test: /\.js$/,
-    exclude: /node_modules/,
-    loader: 'babel-loader',
-    query: {
-        presets: ["env"]
-    }
-});
+// module.exports.module.rules.push({
+//     test: /\.js$/,
+//     exclude: /node_modules/,
+//     loader: 'babel-loader',
+//     query: {
+//         presets: ["env"]
+//     }
+// });
 
 
 module.exports.module.rules.push({

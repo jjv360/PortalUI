@@ -5,7 +5,8 @@
   "main": "src/index.js",
   "scripts": {
     "test": "npm run build",
-    "build": "webpack -p"
+    "build": "webpack-cli --production",
+    "dev": "webpack-cli --watch --progress --development"
   },
   "repository": {
     "type": "git",
@@ -24,6 +25,14 @@
   },
   "homepage": "https://github.com/jjv360/PortalUI#readme",
   "devDependencies": {
-    "webpack": "^4.6.0"
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-preset-env": "^1.7.0",
+    "url-loader": "^1.0.1",
+    "webpack": "^4.15.1",
+    "webpack-cli": "^3.0.8"
+  },
+  "dependencies": {
+    "three": "^0.94.0"
   }
 }
